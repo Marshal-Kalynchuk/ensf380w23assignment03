@@ -2,10 +2,11 @@ package edu.ucalgary.oop;
 
 import java.util.ArrayList;
 
-public class RobotDataRecord {
+public class RobotDataRecord implements Cloneable {
     private ArrayList<RobotDataLine> log;
 
     public RobotDataRecord(String[] array) {
+        this.log = new ArrayList<RobotDataLine>();
         for (String line : array) {
             try {
                 this.log.add(new RobotDataLine(line));
@@ -20,7 +21,15 @@ public class RobotDataRecord {
     public ArrayList<RobotDataLine> getDataRecord() {
         return this.log;
     }
+    @Override
     public Object clone() throws CloneNotSupportedException {
-        return null;
+
+        RobotDataRecord cloned = (RobotDataRecord) super.clone();
+        cloned.log = new ArrayList<RobotDataLine>();
+        for (RobotDataLine line : this.log) {
+            cloned.log.add((RobotDataLine) line.clone());
+        }
+        return cloned;
+
     }
 }
