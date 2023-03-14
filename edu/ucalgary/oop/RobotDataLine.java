@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RobotDataLine implements Cloneable {
+public class RobotDataLine implements java.lang.Cloneable {
     private String dataLine;
     private String robotID;
     private Sensor sensor;
@@ -17,19 +17,29 @@ public class RobotDataLine implements Cloneable {
 
     public RobotDataLine(String line) throws IllegalArgumentException {
 
+        
         this.dataLine = line;
+        System.out.println("On Sensor:");
         this.sensor = new Sensor(line);
+        System.out.println("On Mov:");
         this.movement = new Movement(line);
 
+        System.out.println("On Date:");
         Matcher m = DATE_PATTERN.matcher(line);
         if (m.find()) {
-            int day = Integer.parseInt(m.group(1));
-            int month = Integer.parseInt(m.group(2));
-            int year = Integer.parseInt(m.group(3));
-            this.date = LocalDate.of(year, month, day);
+            try {
+                int day = Integer.parseInt(m.group(1));
+                int month = Integer.parseInt(m.group(2));
+                int year = Integer.parseInt(m.group(3));
+                this.date = LocalDate.of(year, month, day);
+            } catch(Exception e) {
+                throw new IllegalArgumentException();
+            }
+
         } else {
             throw new IllegalArgumentException();
         }
+        System.out.println("On ID:");
         m = ROBOT_PATTERN.matcher(line);
         if (m.find()) {
             this.robotID = m.group(0);

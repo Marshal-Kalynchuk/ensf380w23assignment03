@@ -2,7 +2,7 @@ package edu.ucalgary.oop;
 
 import java.util.ArrayList;
 
-public class RobotDataRecord implements Cloneable {
+public class RobotDataRecord implements java.lang.Cloneable {
     private ArrayList<RobotDataLine> log;
 
     public RobotDataRecord(String[] array) {

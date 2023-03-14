@@ -53,8 +53,8 @@ public class MyOutput {
             //Example of testing invalid input- modify the data as needed to try various invalid scenarios
             //This code should cause an IllegalArgumentException to be thrown, or you can use try/catch statements to test various scenarios.
             System.out.println("Uncomment below to test exceptions...");
-            //String[] badData = getBadData();
-            //RobotDataRecord badDataFile = new RobotDataRecord(badData);
+            String[] badData = getBadData();
+            RobotDataRecord badDataFile = new RobotDataRecord(badData);
 	}
 
 
@@ -75,8 +75,11 @@ public class MyOutput {
 	public static String[] getBadData() {
 
 		String[] dataLog = {
-			"Robot 890A - - [90/03/2022] \"START - NE (ultra$onic)\"",  //Contains invalid day and invalid sensor
-			"Robot 890AZ - - [02/03/2022] \"BACKWARDS - NS (infrared)\""};  //Contains invalid id and invalid movement
+			"Robot 890A - - [90/03/2022] \"START - NE (ultrasonic)\"",  //Contains invalid day 
+			"Robot 890AZ - - [02/03/2022] \"LEFT - NS (infrared)\"",  //Contains invalid id 
+      "Robot 890A - - [04/03/2022] \"START - NE (ultra$onic)\"",  //Contains  invalid sensor
+			"Robot 890A - - [02/03/2022] \"BACKWARDS - NS (infrared)\"", // Contains invalid action
+      "Robot 890A - - [02/03/2022] \"START - WW (infrared)\""};  //Contains  invalid movement
                 return dataLog;
 	}
 
